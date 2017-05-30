@@ -35,23 +35,25 @@
 	</c:if>
 
 	<c:if test="${ not empty loginUser }">
-		<a href="signup">新規ユーザー登録をする</a>
-		<a href="newmessage">新規投稿</a>
-		<a href="http://localhost:8080/Board/usercontrol.jsp">ユーザー管理</a>
-		<a href="logout">ログアウト</a>
+		<a href="logout">ログアウト</a><br/><br/>
+		<a href="newmessage">新規投稿</a><br/><br/>
+		<a href="signup">新規ユーザー登録をする</a><br/><br/>
+		<a href="http://localhost:8080/Board/usercontrol.jsp">ユーザー管理</a><br/><br/>
 	</c:if>
 </div>
 
 <!-- ログインユーザーの情報を表示させるためのコード -->
 <c:if test="${ not empty loginUser }">
-	<h2><c:out value="${loginUser.login_id}" /></h2>
-	<c:out value="${loginUser.name}" />
-	<c:out value="${loginUser.branch_id}" />
-	<c:out value="${loginUser.department_id}" />
+	<h2>ログインID <c:out value="${loginUser.login_id}" /></h2><br/>
+	名前【<c:out value="${loginUser.name}" />】<br/>
+	支店名【<c:out value="${loginUser.branch_id}" />】<br/>
+	部署・役職【<c:out value="${loginUser.department_id}" />】
+
+	<br/><br/><br/>
 
 </c:if>
 
-<!-- 投稿機能 -->>
+<!-- 投稿機能 -->
 <c:if test="${ isShowMessageForm }">
 	<div class="form-area">
 		<form action="newMessage" method="post">  <!-- 中身のデータをactionの場所へ送る -->
@@ -67,9 +69,10 @@
 
 <!-- メッセージをブラウザに表示するためのコード -->
 
-<div class="messages">
+<div class="messages"><h2>投稿された内容</h2><br/>
 	<c:forEach items="${messages}" var="message">
-		<c:out value="${message.text}" />
+		・<c:out value="${message.text}" />
+		<br/>
 	</c:forEach>
 </div>
 

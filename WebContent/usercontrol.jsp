@@ -30,15 +30,17 @@
 		<th>名前</th>
 		<th>支店</th>
 		<th>部署・役職</th>
+		<th>ユーザー編集</th>
 		</tr>
 
 		<c:forEach items="${users}" var="user">
-		<tr>
-		<td><span class="login_id"><c:out value="${user.login_id}" /></span></td>
-		<td><span class="name"><c:out value="${user.name}" /></span></td>
-		<td><span class="branch_id"><c:out value="${user.branch_id}" /></span></td>
-		<td><span class="department_id"><c:out value="${user.department_id}" /></span></td>
-		</tr>
+			<tr>
+			<td><span class="login_id"><c:out value="${user.login_id}" /></span></td>
+			<td><span class="name"><c:out value="${user.name}" /></span></td>
+			<td><span class="branch_id"><c:out value="${user.branch_id}" /></span></td>
+			<td><span class="department_id"><c:out value="${user.department_id}" /></span></td>
+			<td><a href="usersetting?id=${user.id}"name=id>編集</a></td>
+			</tr>
 		</c:forEach>
 	</table>
 </div>

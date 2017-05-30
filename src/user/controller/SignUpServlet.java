@@ -88,6 +88,18 @@ public class SignUpServlet extends HttpServlet {
 		if (StringUtils.isEmpty(department_id) == true) {
 			messages.add("部署・役職を選択してください");
 		}
+
+//重複処理を行いかけ
+		User user = new User();
+		request.setAttribute("user", user);
+		
+
+//
+	//	if (user) {
+//			messages.add("新規登録に失敗しました");
+//		}
+
+
 		if (messages.size() == 0) {
 			return true;
 		} else {
