@@ -69,10 +69,11 @@
 
 <!-- メッセージをブラウザに表示するためのコード -->
 
-<div class="messages"><h2>投稿された内容</h2><br/>
+<div class="messages"><h2>投稿されている内容</h2><br/>
 	<c:forEach items="${messages}" var="message">
-		・<c:out value="${message.text}" />
-		<br/>
+		<c:out value="・件名：${message.subject}" /><br/>
+		<c:out value="　${message.text}" />
+		<br/><br/>
 	</c:forEach>
 </div>
 

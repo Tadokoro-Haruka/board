@@ -36,11 +36,11 @@ public class SignUpServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		User user = new User();
-			user.setLogin_id(request.getParameter("login_id"));
-			user.setPassword(request.getParameter("password"));
-			user.setName(request.getParameter("name"));
-			user.setBranch_id(request.getParameter("branch_id"));
-			user.setDepartment_id(request.getParameter("department_id"));
+		user.setLogin_id(request.getParameter("login_id"));
+		user.setPassword(request.getParameter("password"));
+		user.setName(request.getParameter("name"));
+		user.setBranch_id(request.getParameter("branch_id"));
+		user.setDepartment_id(request.getParameter("department_id"));
 
 
 		if (isValid(request, messages) == true) {
@@ -53,7 +53,7 @@ public class SignUpServlet extends HttpServlet {
 
 			request.setAttribute("user", user);
 			request.getRequestDispatcher("signup.jsp").forward(request, response);
-			response.sendRedirect("./index.jsp");
+
 		}
 	}
 
@@ -88,16 +88,6 @@ public class SignUpServlet extends HttpServlet {
 		if (StringUtils.isEmpty(department_id) == true) {
 			messages.add("部署・役職を選択してください");
 		}
-
-//重複処理を行いかけ
-		User user = new User();
-		request.setAttribute("user", user);
-		
-
-//
-	//	if (user) {
-//			messages.add("新規登録に失敗しました");
-//		}
 
 
 		if (messages.size() == 0) {

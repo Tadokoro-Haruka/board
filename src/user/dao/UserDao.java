@@ -130,7 +130,7 @@ public class UserDao {
 		}
 	}
 
-//ユーザー編集
+//ユーザー編集　既存の情報を取ってくる
 	private List<User> toUsersList(ResultSet rs)throws SQLException {
 
 		List<User> ret = new ArrayList<User>();
@@ -161,21 +161,20 @@ public class UserDao {
 		}
 	}
 
-	public void update(Connection connection, User user) {
+	//ユーザーの編集　新たに入力した情報を登録する
+	public void update(Connection connection, User user) {//
 
 		PreparedStatement ps = null;
 		try {
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE user SET");
+			sql.append("UPDATE users SET");
 			sql.append("  login_id = ?");
 			sql.append(", password = ?");
 			sql.append(", name = ?");
 			sql.append(", branch_id = ?");
 			sql.append(", department_id = ?");
-			sql.append(", update_date = CURRENT_TIMESTAMP");
 			sql.append(" WHERE");
 			sql.append(" id = ?");
-			sql.append(" AND");
 
 			ps = connection.prepareStatement(sql.toString());
 
@@ -186,6 +185,8 @@ public class UserDao {
 			ps.setString(5, user.getDepartment_id());
 			ps.setInt(6, user.getId());
 
+			/*excuteUpdateで実行している。実行したら、何件実行したかという数値が返ってくるから、戻り値の型はint。
+			 返ってきた数値が０だったら（if (count == 0)）何も変更されていないことになるからException。*/
 			int count = ps.executeUpdate();
 			if (count == 0) {
 				throw new NoRowsUpdatedRuntimeException();

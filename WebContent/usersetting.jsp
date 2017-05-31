@@ -9,7 +9,19 @@
 	<title>ユーザー編集</title>
 </head>
 <body>
-<form action="usersetting" method="post" enctype="multipart/form-data">${editUser.login_id}の編集<br /><br />
+<c:if test="${ not empty errorMessages }">
+	<div class="errorMessages">
+		<ul>
+			<c:forEach items="${errorMessages}" var="message">
+				<li><c:out value="${message}" />
+			</c:forEach>
+		</ul>
+	</div>
+	<c:remove var="errorMessages" scope="session"/>
+</c:if>
+<form action="usersetting" method="post" >${editUser.login_id}の編集<br /><br />
+
+	<input name="id" type="hidden" value="${editUser.id}" />
 	<label for="login_id">ログインID</label>
 	<input name="login_id" value="${editUser.login_id}" /><br /><br />
 
